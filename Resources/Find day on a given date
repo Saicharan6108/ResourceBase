@@ -1,0 +1,63 @@
+import java.util.*;
+public class Calender {
+
+
+public static String findDay(int month, int day, int year) {
+        
+        String dei[]={"SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"};
+        
+        int m=6,l=0;long iterations=0L;
+	boolean b=false;
+        
+
+        for(int i=2000;i<=year;i++)
+        {
+            for(int j=1;j<13;j++)
+            {
+                for(int k=1;(j==2 && i%4==0)?k<30:(j==2 && i%4!=0)?k<29:( (j<8)? ( (j%2==0)?k<31:k<32 ) : ( (j%2==0)?k<32:k<31 ) );k++)
+                {
+
+			        iterations++;
+                    if(year==i && month==j && day==k)
+                    {
+			            System.out.println("~");                        
+                        l=m; b=true;
+                        break;
+                    }
+                    else 
+                    {
+			            m++;
+                        if(m>6)
+                        {
+                            m=0;
+                        }
+			            //k-=1;break;      
+                    }
+                }
+		
+		        if(b==true)break;
+            }
+		    if(b==true)break;
+        }
+        //System.out.println("iterations="+iterations);
+        return dei[l];
+
+    }
+
+
+public static void main(String[] args) {
+	
+	Scanner sc=new Scanner(System.in);
+
+
+	System.out.print("Enter date as DD MM YYYY and get day : ");
+	int d=sc.nextInt();
+	int m=sc.nextInt();
+	int y=sc.nextInt();
+
+	System.out.println(findDay(m,d,y));
+
+	
+		
+}
+}
